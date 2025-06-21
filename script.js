@@ -1,21 +1,43 @@
-
 let clicks = 0;
 let multiplier = 1;
 let interval = null;
 
-document.getElementById("clicker").addEventListener("click", () => {
+// Цены
+let multiplierPrice = 100;
+let autoClickerPrice = 500;
+let musicPrice = 200;
+
+// Музыка
+const musicTracks = [
+    "assets/music/track1.mp3",
+    "assets/music/track2.mp3",
+    "assets/music/track3.mp3"
+];
+let currentTrackIndex = 0;
+
+const clicker = document.getElementById("clicker");
+const clicksDisplay = document.getElementById("clicks");
+const multiplierBtn = document.getElementById("multiplier-btn");
+const autoClickerBtn = document.getElementById("autoclicker-btn");
+const musicBtn = document.getElementById("music-btn");
+
+clicker.addEventListener("click", () => {
     clicks += multiplier;
     updateDisplay();
 });
 
 function updateDisplay() {
-    document.getElementById("clicks").innerText = clicks;
+    clicksDisplay.innerText = clicks;
+    multiplierBtn.innerText = `Купить 2x клики (${multiplierPrice} кликов)`;
+    autoClickerBtn.innerText = `Купить автокликер на 10 минут (${autoClickerPrice} кликов)`;
+    musicBtn.innerText = `Сменить музыку (${musicPrice} кликов)`;
 }
 
 function buyMultiplier() {
-    if (clicks >= 100) {
-        clicks -= 100;
+    if (clicks >= multiplierPrice) {
+        clicks -= multiplierPrice;
         multiplier *= 2;
+        multiplierPrice *= 2;
         updateDisplay();
     } else {
         alert("Недостаточно кликов!");
@@ -23,8 +45,9 @@ function buyMultiplier() {
 }
 
 function buyAutoClicker() {
-    if (clicks >= 500) {
-        clicks -= 500;
+    if (clicks >= autoClickerPrice) {
+        clicks -= autoClickerPrice;
+        autoClickerPrice *= 2;
         updateDisplay();
         if (interval) clearInterval(interval);
         interval = setInterval(() => {
@@ -37,14 +60,18 @@ function buyAutoClicker() {
     }
 }
 
-function buyMusic(path) {
-    if (clicks >= 200) {
-        clicks -= 200;
+function buyMusic() {
+    if (clicks >= musicPrice) {
+        clicks -= musicPrice;
         updateDisplay();
+
+        currentTrackIndex = (currentTrackIndex + 1) % musicTracks.length;
         const music = document.getElementById("background-music");
-        music.src = path;
+        music.src = musicTracks[currentTrackIndex];
         music.play();
     } else {
         alert("Недостаточно кликов!");
     }
 }
+
+updateDisplay(); // начальная инициализация текста
