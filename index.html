@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,9 +13,9 @@
         <p>Клики: <span id="clicks">0</span></p>
         <div class="shop">
             <h2>Магазин</h2>
-            <button onclick="buyMultiplier()">Купить 2x клики (100 кликов)</button>
-            <button onclick="buyAutoClicker()">Купить автокликер на 10 минут (500 кликов)</button>
-            <button onclick="buyMusic('assets/music/track2.mp3')">Сменить музыку (200 кликов)</button>
+            <button id="multiplier-btn" onclick="buyMultiplier()">Купить 2x клики (100 кликов)</button>
+            <button id="autoclicker-btn" onclick="buyAutoClicker()">Купить автокликер на 10 минут (500 кликов)</button>
+            <button id="music-btn" onclick="buyMusic()">Сменить музыку (200 кликов)</button>
         </div>
     </div>
     <script src="script.js"></script>
