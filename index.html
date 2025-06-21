@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Гриндилка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="background-music" src="assets/music/track1.mp3" autoplay loop></audio>
+    <div class="container">
+        <h1>Гриндилка</h1>
+        <img src="assets/clicker_image.png" id="clicker" alt="Кликабельное изображение">
+        <p>Клики: <span id="clicks">0</span></p>
+        <div class="shop">
+            <h2>Магазин</h2>
+            <button onclick="buyMultiplier()">Купить 2x клики (100 кликов)</button>
+            <button onclick="buyAutoClicker()">Купить автокликер на 10 минут (500 кликов)</button>
+            <button onclick="buyMusic('assets/music/track2.mp3')">Сменить музыку (200 кликов)</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

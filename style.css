@@ -1,0 +1,32 @@
+
+body {
+    background: linear-gradient(to right, #222, #333);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+#clicker {
+    width: 300px;
+    cursor: pointer;
+    border: 5px solid gold;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.shop button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: gold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
