@@ -1,6 +1,7 @@
 let clicks = 0;
 let multiplier = 1;
 let interval = null;
+let captchaActive = false;
 
 // Цены
 let multiplierPrice = 100;
@@ -21,9 +22,20 @@ const multiplierBtn = document.getElementById("multiplier-btn");
 const autoClickerBtn = document.getElementById("autoclicker-btn");
 const musicBtn = document.getElementById("music-btn");
 
+const captcha = document.getElementById("fake-captcha");
+const captchaBox = document.getElementById("captcha-box");
+const captchaCheckbox = document.getElementById("captcha-checkbox");
+
 clicker.addEventListener("click", () => {
+    if (captchaActive) return; // Пока капча не пройдена — блокируем кликер
+
     clicks += multiplier;
     updateDisplay();
+
+    // Каждые 10 кликов показывать капчу
+    if (clicks % 10 === 0) {
+        showCaptcha();
+    }
 });
 
 function updateDisplay() {
@@ -34,6 +46,8 @@ function updateDisplay() {
 }
 
 function buyMultiplier() {
+    if (captchaActive) return;
+
     if (clicks >= multiplierPrice) {
         clicks -= multiplierPrice;
         multiplier *= 2;
@@ -45,6 +59,8 @@ function buyMultiplier() {
 }
 
 function buyAutoClicker() {
+    if (captchaActive) return;
+
     if (clicks >= autoClickerPrice) {
         clicks -= autoClickerPrice;
         autoClickerPrice *= 2;
@@ -61,6 +77,8 @@ function buyAutoClicker() {
 }
 
 function buyMusic() {
+    if (captchaActive) return;
+
     if (clicks >= musicPrice) {
         clicks -= musicPrice;
         updateDisplay();
@@ -74,4 +92,13 @@ function buyMusic() {
     }
 }
 
-updateDisplay(); // начальная инициализация текста
+function showCaptcha() {
+    captcha.classList.remove("hidden");
+    captchaActive = true;
+
+    // Начинаем "убегать" от курсора 10 секунд
+    let escapeTime = 10000; // 10 сек
+    let startTime = Date.now();
+
+    function moveBox(e) {
+        if (Date.now() - startTime > e
