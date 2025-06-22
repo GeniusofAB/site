@@ -1,3 +1,4 @@
+
 body {
     background: linear-gradient(to right, #222, #333);
     color: white;
@@ -28,32 +29,4 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-/* Фейковая капча */
-#fake-captcha {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #444;
-    border: 2px solid white;
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 9999;
-}
-
-#captcha-box {
-    display: inline-block;
-    padding: 10px;
-    background: white;
-    color: black;
-    cursor: pointer;
-    border: 1px solid #999;
-    border-radius: 5px;
-    position: relative;
-}
-
-.hidden {
-    display: none;
 }
